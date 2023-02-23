@@ -1,0 +1,15 @@
+{
+  "name": "webnwb-node-test",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Test webnwb in node",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+
+  "dependencies": {
+    "webnwb": "^0.1.0"
+  }
+}

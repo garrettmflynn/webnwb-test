@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebNWB Test</title>
+</head>
+<body>
+    <button id="local">Load Local File</button>
+
+    <hr>
+    <input placeholder="Input URL here"></input>
+    <button id="stream">Stream Remote File</button>
+</body>
+<script type="module">
+    import nwb from './node_modules/webnwb/dist/index.esm.js'
+
+    const io = new nwb.NWBHDF5IO()
+
+
+    const local = document.querySelector('#local')
+    local.addEventListener('click', async (e) => {
+        const file = await io.load()
+        console.log(file)
+    })
+
+
+    const input = document.querySelector('input')
+    const stream = document.querySelector('#stream')
+    stream.addEventListener('click', async (e) => {
+        const file = await io.load(input.value, {useStreaming: true})
+        console.log(
+            file, 
+            await file.nwb_version,
+            await file.identifier
+        )
+    })
+
+</script>
+</html>
